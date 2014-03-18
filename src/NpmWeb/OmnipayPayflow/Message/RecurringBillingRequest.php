@@ -82,8 +82,8 @@ class RecurringBillingRequest extends AuthorizeRequest
         $data['START'] = $this->getStartDate(); 
         $data['TERM'] = $this->getTerm(); // # payments
         $data['PAYPERIOD'] = $this->getPayPeriod(); 
-        $data['COMMENT1'] = $this->getComment1();
-        //$data['COMMENT2'] = $this->getComment2();
+        $data['COMMENT1'] = $this->getDescription();
+        $data['COMMENT2'] = $this->getProfileName();
        
         $data['EMAIL'] = $this->getCard()->getEmail();
         $data['FIRSTNAME'] = $this->getCard()->getFirstName();

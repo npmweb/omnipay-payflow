@@ -16,7 +16,7 @@ class RecurringGatewayTest extends GatewayTestCase {
 
         $this->options = array(
             'amount' => '10.00',
-            'card' => new CreditCard(array(
+            'card' => new \Omnipay\Common\CreditCard(array(
                 'firstName' => 'Example',
                 'lastName' => 'User',
                 'number' => '4111111111111111',
@@ -33,12 +33,14 @@ class RecurringGatewayTest extends GatewayTestCase {
     }
 
 	public function testAddRecurringProfileSuccess() {
-		echo "Here I am!";
 		// arrange
         $this->setMockHttpResponse('ProfileSuccess.txt');
 
  		// act
+ 		echo "Sending the request to Payflow\n";
         $response = $this->gateway->addRecurringProfile($this->options)->send();
+
+        echo "Response data: ".print_r($response->getData(),true)."\n";
 
 		// assert
         $this->assertTrue($response->isProfileActionSuccessful());
